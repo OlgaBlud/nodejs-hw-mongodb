@@ -23,14 +23,15 @@ export const getAllContacts = async ({
   // const contactsCount = await ContactsCollection.find()
   //   .merge(contactsQuery)
   //   .countDocuments();
-  const contactsCount = await contactsQuery.clone().countDocuments();
+  const [contactsCount, contacts] = await Promise.all([
+    contactsQuery.clone().countDocuments(),
+    contactsQuery
+      .skip(skip)
+      .limit(limit)
+      .sort({ [sortBy]: sortOrder })
+      .exec(),
+  ]);
 
-  const contacts = await contactsQuery
-    // .find()
-    .skip(skip)
-    .limit(limit)
-    .sort({ [sortBy]: sortOrder })
-    .exec();
   const paginationData = calculatePaginationData(contactsCount, page, perPage);
   return { data: contacts, ...paginationData };
 };
