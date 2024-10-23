@@ -1,8 +1,4 @@
-// Створіть модель User з такими полями:
-
 import { model, Schema } from 'mongoose';
-
-// email - string, email, unique, required
 
 const usersSchema = new Schema(
   {

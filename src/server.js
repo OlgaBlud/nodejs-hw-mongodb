@@ -3,7 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import { env } from './utils/env.js';
 import router from './routers/index.js';
-// import contactsRouter from './routers/contacts.js';
+import cookieParser from 'cookie-parser';
+
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 const PORT = Number(env('PORT', '3000'));
@@ -18,6 +19,7 @@ export const setupServer = () => {
     }),
   );
   app.use(cors());
+  app.use(cookieParser());
   // app.use(
   //   pino({
   //     transport: {
@@ -31,7 +33,7 @@ export const setupServer = () => {
       message: 'Hello world!',
     });
   });
-  // app.use(contactsRouter);
+
   app.use(router);
   app.use('*', notFoundHandler);
   app.use(errorHandler);
