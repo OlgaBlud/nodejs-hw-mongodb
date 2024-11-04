@@ -115,3 +115,24 @@ export const requestResetToken = async (email) => {
     );
   }
 };
+export const resetPassword = async (password, token) => {
+  try {
+    const decoded = jwt.verify(token, env('JWT_SECRET'));
+    const user = await UsersCollection.findOne({
+      _id: decoded.sub,
+      email: decoded.email,
+    });
+    if (!user) {
+      throw createHttpError(404, 'User not found!');
+    }
+    const hashedNewPassword = await bcrypt.hash(password, 10);
+    await UsersCollection.findByIdAndUpdate(user._id, {
+      password: hashedNewPassword,
+    });
+    await SessionsCollection.deleteOne({ userId: user._id });
+  } catch (err) {
+    if (err.name === 'JsonWebTokenError' || err.name === 'TokenExpiredError') {
+      throw createHttpError(401, 'Token is expired or invalid.');
+    }
+  }
+};
