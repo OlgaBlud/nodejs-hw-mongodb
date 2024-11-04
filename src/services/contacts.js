@@ -43,7 +43,7 @@ export const getContactById = async (userId, contactId) => {
 };
 export const createContact = async (userData) => {
   const contact = await ContactsCollection.create(userData);
-  console.log('Created contact:', contact);
+
   return contact;
 };
 export const deleteContact = async (userId, contactId) => {

@@ -51,7 +51,7 @@ export const getContactByIdController = async (req, res) => {
 export const createContactController = async (req, res) => {
   const userId = req.user._id;
   const photo = req.file;
-  console.log('File from Multer:', photo);
+
   let photoUrl;
   if (photo) {
     if (env('ENABLE_CLOUDINARY') === 'true') {
@@ -60,7 +60,6 @@ export const createContactController = async (req, res) => {
       photoUrl = await saveFileToUploadDir(photo);
     }
   }
-  console.log('Photo URL:', photoUrl);
 
   const contact = await createContact({ ...req.body, userId, photo: photoUrl });
 
