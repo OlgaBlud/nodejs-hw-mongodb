@@ -16,9 +16,20 @@ servers:
   - url: https://nodejs-hw-mongodb-q7pn.onrender.com
 paths:
   # тут будуть посилання на ендпоінти
+
+  /contacts:
+    post:
+      $ref: ../swagger/paths/contacts/post.yaml
+    get:
+      $ref: ../swagger/paths/contacts/get.yaml
   /contacts/{contactId}:
     get:
       $ref: ../swagger/paths/contacts/{contactId}/get.yaml
+    patch:
+      $ref: ../swagger/paths/contacts/{contactId}/patch.yaml
+    delete:
+      $ref: ../swagger/paths/contacts/{contactId}/delete.yaml
+
 components:
   securitySchemes:
     bearerAuth:
