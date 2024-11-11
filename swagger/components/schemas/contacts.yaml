@@ -4,7 +4,6 @@ required:
   - name
   - phoneNumber
   - email
-  - isFavourite
   - contactType
 properties:
   _id:
@@ -32,3 +31,7 @@ properties:
     type: string
     enum: ['work', 'home', 'personal']
     example: 'work'
+  photo:
+    description: "Link to contact's photo"
+    type: string
+    example: 'https://res.cloudinary.com/dlatnus8p/image/upload/v1730722265/fjc6oynw…'
