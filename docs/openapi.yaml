@@ -12,11 +12,9 @@ tags:
   - name: Auth
     description: Auth operations.
 servers:
-  - url: http://127.0.0.1:8080
+  # - url: http://127.0.0.1:8080
   - url: https://nodejs-hw-mongodb-q7pn.onrender.com
 paths:
-  # тут будуть посилання на ендпоінти
-
   /contacts:
     post:
       $ref: ../swagger/paths/contacts/post.yaml
@@ -24,11 +22,11 @@ paths:
       $ref: ../swagger/paths/contacts/get.yaml
   /contacts/{contactId}:
     get:
-      $ref: ../swagger/paths/contacts/{contactId}/get.yaml
+      $ref: ../swagger/paths/contacts/{id}/get.yaml
     patch:
-      $ref: ../swagger/paths/contacts/{contactId}/patch.yaml
+      $ref: ../swagger/paths/contacts/{id}/patch.yaml
     delete:
-      $ref: ../swagger/paths/contacts/{contactId}/delete.yaml
+      $ref: ../swagger/paths/contacts/{id}/delete.yaml
 
 components:
   securitySchemes:
