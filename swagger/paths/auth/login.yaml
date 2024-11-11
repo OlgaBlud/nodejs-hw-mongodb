@@ -1,0 +1,55 @@
+tags:
+  - Auth
+summary: Login of a user
+operationId: loginUser
+description: 'Login of a user with payload'
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+        properties:
+          email:
+            description: "User's email"
+            type: string
+            example: 'don-doe@gmail.com'
+          password:
+            description: "User's password"
+            type: string
+            example: scvsf234kb
+responses:
+  '200':
+    description: User successfully logged in
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully logged in a user!
+            data:
+              type: object
+              required:
+                - accessToken
+              properties:
+                accessToken:
+                  type: string
+                  example: '35Ws0U02Uih54pGhMKudDrbxtV43oFARsS9XFVh+'
+  '404':
+    $ref: ../../components/responses/404.yaml
+  '401':
+    $ref: ../../components/responses/401.yaml
