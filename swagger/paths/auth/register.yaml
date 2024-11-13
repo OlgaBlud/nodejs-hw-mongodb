@@ -1,8 +1,8 @@
 tags:
   - Auth
-summary: Registration of a user
+summary: Registration of the user
 operationId: registerUser
-description: 'Registration of a user with payload'
+description: 'Registration of the user'
 security:
   - bearerAuth: []
 requestBody:

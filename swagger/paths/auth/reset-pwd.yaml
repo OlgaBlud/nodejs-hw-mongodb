@@ -1,0 +1,47 @@
+tags:
+  - Auth
+summary: Reset password
+operationId: resetPassword
+description: 'Ability to reset password'
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - token
+          - password
+        properties:
+          token:
+            description: 'Token for reset a password'
+            type: string
+            example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Njc5Mjg0ZjRlMjYzMDE4NmMxMmI2YmUiLCJlbWFpbCI6ImFydGVta28yNDdAZ21haWwuY29tIiwiaWF0IjoxNzE5MjIzNjEwLCJleHAiOjE3MTkyMjM5MTB9.uMVZIrqNrvJ1j_L4c9cNlUg6JOlkfcgxQfYdFHl2z_Q'
+          password:
+            description: "User's password"
+            type: string
+            example: scvsf234kb
+responses:
+  '200':
+    description: Reset of a password
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Password has been successfully reset!
+            data:
+              type: object
+  '404':
+    $ref: '../../components/responses/404.yaml'
